@@ -41,6 +41,7 @@ class TaskDetail : Fragment() {
         binding.taskDetailProgress.progress = arguments?.get("progress").toString().toInt()
         binding.taskDetailName.text = arguments?.get("name").toString()
         binding.taskDetailProgressChart.setPercentage(arguments?.get("progress").toString().toInt())
+        binding.listPosition.text = arguments?.get("id").toString()
         binding.taskDetailProgress.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(

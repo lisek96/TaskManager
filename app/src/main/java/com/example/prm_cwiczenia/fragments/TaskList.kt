@@ -114,6 +114,8 @@ class TaskList : Fragment() {
 
     fun getPosition(task: Task): Int = taskAdapter.getPosition(task)
 
+    fun getTask(position: Int) = taskAdapter.getTask(position)
+
     fun notifyUpdated(position: Int) {
         taskAdapter.notifyItemChanged(position)
     }

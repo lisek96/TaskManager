@@ -120,10 +120,13 @@ class ProgressChart(context: Context, attrs: AttributeSet) : View(context, attrs
         }
         canvas?.drawLine(circleMiddleX, circleMiddleY, lastPointX, lastPointY, border)
         if(percentage <= 50){
-            if(percentage>=40){
+            if(percentage>=38){
                 canvas?.drawText("$percentage%", lastPointX+10*density, lastPointY+20*density, dsfsd)
-            }else {
-                canvas?.drawText("$percentage%", lastPointX + 20 * density, lastPointY, dsfsd)
+            }else if(percentage<=11){
+                canvas?.drawText("$percentage%", lastPointX, lastPointY-15*density, dsfsd)
+            }
+            else {
+                canvas?.drawText("$percentage%", lastPointX + 17 * density, lastPointY, dsfsd)
             }
         }else{
             if(percentage <= 60){
@@ -131,7 +134,7 @@ class ProgressChart(context: Context, attrs: AttributeSet) : View(context, attrs
             }else if(percentage in 61..84){
                 canvas?.drawText("$percentage%", lastPointX-44 * density, lastPointY+5*density, dsfsd)
             }else{
-                canvas?.drawText("$percentage%", lastPointX-35 * density, lastPointY-20*density, dsfsd)
+                canvas?.drawText("$percentage%", lastPointX-35 * density, lastPointY-15*density, dsfsd)
             }
         }
 //        canvas?.drawText(lastPointX.toString(), 100*density, 100*density, dsfsd)
@@ -156,7 +159,7 @@ class ProgressChart(context: Context, attrs: AttributeSet) : View(context, attrs
     }
 
     fun getRightIterations(percent: Int): Int {
-        val full = 2850
+        val full = 2800
 
 
         if (percent >= 50) {
@@ -167,7 +170,7 @@ class ProgressChart(context: Context, attrs: AttributeSet) : View(context, attrs
     }
 
     fun getLeftIterations(percent: Int) : Int {
-        return 2850 - (percent-50) * 2850/50
+        return 2800 - (percent-50) * 2800/50
     }
 
     fun setPercentage(percent: Int){

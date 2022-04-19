@@ -14,7 +14,7 @@ import java.time.temporal.ChronoField
 
 class TaskAdapter(val onClickListener : (String) -> Unit,
             val onLongClickListener: (String) -> Unit): RecyclerView.Adapter<TaskViewHolder>() {
-    private val handler = HandlerCompat.createAsync(Looper.getMainLooper())
+
     private var tasks = mutableListOf<Task>()
 
 
@@ -68,6 +68,8 @@ class TaskAdapter(val onClickListener : (String) -> Unit,
     }
 
     fun getPosition(task: Task) = tasks.indexOf(task)
+
+    fun getTask(position: Int) = tasks[position]
 
     fun getTasks() : List<Task> = tasks
 

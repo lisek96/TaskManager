@@ -8,31 +8,35 @@ import com.example.prm_cwiczenia.fragments.TaskDeleteConfirmation
 import com.example.prm_cwiczenia.fragments.TaskDetail
 import com.example.prm_cwiczenia.fragments.TaskList
 import com.example.prm_cwiczenia.model.Task
+import com.example.prm_cwiczenia.service.TaskService
 
 class TaskAppController : AppCompatActivity() {
 
     private val binding by lazy { TaskAppControllerViewBinding.inflate(layoutInflater) }
     private var taskList: TaskList = TaskList()
+    private val taskService : TaskService = TaskService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        showTasksList()
+    }
+
+    private fun showTasksList(){
         supportFragmentManager.beginTransaction()
             .add(R.id.container, taskList, TaskList.javaClass.name)
             .commit()
     }
 
+    fun editTask(position: Int){
+        val task = taskList.getTask(position)
+
+    }
+
     fun goDetailsAfterListElementClick(id: String) {
-        val bundle = Bundle()
         val task: Task = taskList.getTaskById(id)
-        bundle.putString("name", task.name)
-        bundle.putString("progress", task.progress.toString())
-        bundle.putString("priority", task.priority.toString())
-        bundle.putString("deadline", task.deadLine.toString())
-        bundle.putString("logo", task.logoDrawableId.toString())
-        bundle.putString("id", task.taskId)
         val taskDetail = TaskDetail().apply {
-            arguments = bundle
+            arguments = taskService.createBundleFromTask(task)
         }
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, taskDetail, TaskDetail.javaClass.name)
