@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomView">
+        <attr name="percentage" format="integer" />
+        <attr name="leftpadding" format="integer" />
+        <attr name="toppadding" format="integer" />
+    </declare-styleable>
+</resources>
