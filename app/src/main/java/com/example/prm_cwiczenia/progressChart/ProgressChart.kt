@@ -12,29 +12,20 @@ import com.example.prm_cwiczenia.R
 class ProgressChart(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private val attributes = context.obtainStyledAttributes(attrs, R.styleable.CustomView)
     private var thispercentage = attributes.getInt(R.styleable.CustomView_percentage, 25)
-    private val textPaint =
+    private val redOvalPaint =
         Paint().apply {
             isAntiAlias = true
             color = Color.RED
             style = Paint.Style.FILL
         }
-
-    private val textPaintGreen =
+    private val greenLinesPaint =
         Paint().apply {
             strokeWidth = 10f
             isAntiAlias = true
             color = Color.GREEN
             style = Paint.Style.STROKE
         }
-    private val textPaintBlack =
-        Paint().apply {
-            strokeWidth = 12f
-            isAntiAlias = true
-            color = Color.BLACK
-            style = Paint.Style.STROKE
-        }
-
-    private val border =
+    private val blackBorderOverRedOvalPaint =
         Paint().apply {
             strokeWidth = 17f
             isAntiAlias = true
@@ -42,7 +33,7 @@ class ProgressChart(context: Context, attrs: AttributeSet) : View(context, attrs
             style = Paint.Style.STROKE
         }
 
-    private val dsfsd =
+    private val percentNumberIndicator =
         Paint().apply {
             strokeWidth = 2f
             textSize = 48f
@@ -64,9 +55,9 @@ class ProgressChart(context: Context, attrs: AttributeSet) : View(context, attrs
         val totalBorderHeight = (200+3) * density + ovalPaddingTop
 
         canvas?.drawOval(RectF(ovalPaddingLeft, ovalPaddingTop,
-            totalWidth, totalHeight), textPaint)
+            totalWidth, totalHeight), redOvalPaint)
         canvas?.drawOval(RectF(ovalPaddingLeft-3*density, ovalPaddingTop-3*density
-            , totalBorderWidth, totalBorderHeight), border)
+            , totalBorderWidth, totalBorderHeight), blackBorderOverRedOvalPaint)
 
         var percentage = thispercentage
         var lastPointX = 0f
@@ -80,7 +71,7 @@ class ProgressChart(context: Context, attrs: AttributeSet) : View(context, attrs
                 currentI = i.toFloat()
                 break
             }
-            canvas?.drawLine(circleMiddleX, circleMiddleY, x, ovalPaddingTop + i / 5.toFloat(), textPaintGreen)
+            canvas?.drawLine(circleMiddleX, circleMiddleY, x, ovalPaddingTop + i / 5.toFloat(), greenLinesPaint)
             if (getRightIterations(percentage) == i) {
                 lastPointX = x
                 lastPointY = ovalPaddingTop + i / 5.toFloat()
@@ -103,13 +94,13 @@ class ProgressChart(context: Context, attrs: AttributeSet) : View(context, attrs
                 canvas?.drawLine(circleMiddleX, circleMiddleY,
                     x,
                     ovalPaddingTop + i / 5.toFloat(),
-                    textPaintGreen
+                    greenLinesPaint
                 )
             }
         }
         //lastpoints
 
-        canvas?.drawLine(circleMiddleX, circleMiddleY+4*density, circleMiddleX, ovalPaddingTop, border)
+        canvas?.drawLine(circleMiddleX, circleMiddleY+4*density, circleMiddleX, ovalPaddingTop, blackBorderOverRedOvalPaint)
         if(percentage == 50){
            lastPointX = circleMiddleX
             lastPointY = totalHeight
@@ -118,23 +109,23 @@ class ProgressChart(context: Context, attrs: AttributeSet) : View(context, attrs
             lastPointY = firstY
             lastPointX = firstX
         }
-        canvas?.drawLine(circleMiddleX, circleMiddleY, lastPointX, lastPointY, border)
+        canvas?.drawLine(circleMiddleX, circleMiddleY, lastPointX, lastPointY, blackBorderOverRedOvalPaint)
         if(percentage <= 50){
             if(percentage>=38){
-                canvas?.drawText("$percentage%", lastPointX+10*density, lastPointY+20*density, dsfsd)
+                canvas?.drawText("$percentage%", lastPointX+10*density, lastPointY+20*density, percentNumberIndicator)
             }else if(percentage<=11){
-                canvas?.drawText("$percentage%", lastPointX, lastPointY-15*density, dsfsd)
+                canvas?.drawText("$percentage%", lastPointX, lastPointY-15*density, percentNumberIndicator)
             }
             else {
-                canvas?.drawText("$percentage%", lastPointX + 17 * density, lastPointY, dsfsd)
+                canvas?.drawText("$percentage%", lastPointX + 17 * density, lastPointY, percentNumberIndicator)
             }
         }else{
             if(percentage <= 60){
-                canvas?.drawText("$percentage%", lastPointX-30*density, lastPointY+30*density, dsfsd)
+                canvas?.drawText("$percentage%", lastPointX-30*density, lastPointY+30*density, percentNumberIndicator)
             }else if(percentage in 61..84){
-                canvas?.drawText("$percentage%", lastPointX-44 * density, lastPointY+5*density, dsfsd)
+                canvas?.drawText("$percentage%", lastPointX-44 * density, lastPointY+5*density, percentNumberIndicator)
             }else{
-                canvas?.drawText("$percentage%", lastPointX-35 * density, lastPointY-15*density, dsfsd)
+                canvas?.drawText("$percentage%", lastPointX-35 * density, lastPointY-15*density, percentNumberIndicator)
             }
         }
 //        canvas?.drawText(lastPointX.toString(), 100*density, 100*density, dsfsd)
@@ -160,7 +151,6 @@ class ProgressChart(context: Context, attrs: AttributeSet) : View(context, attrs
 
     fun getRightIterations(percent: Int): Int {
         val full = 2800
-
 
         if (percent >= 50) {
             return full

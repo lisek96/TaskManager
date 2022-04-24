@@ -130,7 +130,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+        android:id="@+id/editTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
@@ -142,7 +142,7 @@
         app:srcCompat="@drawable/ic_baseline_edit_24" />
 
     <TextView
-        android:id="@+id/listPosition"
+        android:id="@+id/taskId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="353dp"

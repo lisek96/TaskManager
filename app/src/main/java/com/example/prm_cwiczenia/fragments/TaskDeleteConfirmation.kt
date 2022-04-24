@@ -12,6 +12,12 @@ import com.example.prm_cwiczenia.R
 import com.example.prm_cwiczenia.activities.TaskAppController
 
 class TaskDeleteConfirmation : DialogFragment() {
+    private lateinit var controller : TaskAppController
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        controller = requireActivity() as TaskAppController
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
         AlertDialog.Builder(requireContext())
@@ -26,7 +32,6 @@ class TaskDeleteConfirmation : DialogFragment() {
     }
 
     fun removeTask(id: String){
-        var controller = requireActivity() as TaskAppController
         controller.removeTask(id)
     }
 }

@@ -1,16 +1,13 @@
 <resources>
-    <string name="app_name">PRM_cwiczenia</string>
-    <string name="input_value">Podaj wartość</string>
-    <string name="value_too_low">Podana wartość jest za niska</string>
-    <string name="value_too_high">Podana wartość jest za wysoka</string>
-    <string name="check">Sprawdź</string>
-    <string name="one_more_time">Ja chcę zagrać kolejny raz!</string>
-    <string name="chosenImageInfo">Chosen image: </string>
     <string name="card_taskProgressLabel">Progress:</string>
     <string name="card_taskNameLabel">Name:</string>
     <string name="card_taskPriorityLabel">Priority:</string>
     <string name="card_taskDeadlineLabel">Deadline:</string>
     <string name="setProgress">Set progress</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">Task Manager by s21235</string>
+    <string-array name="priority_array">
+        <item>LOW</item>
+        <item>MEDIUM</item>
+        <item>HIGH</item>
+    </string-array>
 </resources>
